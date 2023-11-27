@@ -1,7 +1,7 @@
-$high-emph: rgba(white, 0.87);
-$med-emph: rgba(white, 0.69); 
-$low-emph: rgba(white, 0.38);
-$dark-grey : #121212; 
+$high-emph: rgba(rgb(207, 167, 255), 0.87);
+$med-emph: rgba(rgb(191, 237, 255), 0.69); 
+$low-emph: rgba(rgb(154, 255, 233), 0.38);
+$dark-grey : #0b295e; 
 // $dark-grey : #1F1B24;
 $overlay: mix($dark-grey, white, 95%);
 $overlay-light: mix($dark-grey, white, 86%);

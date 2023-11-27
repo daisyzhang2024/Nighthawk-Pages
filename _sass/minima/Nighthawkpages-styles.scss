@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Bonbon&family=Borel&family=Chilanka&display=swap');
+
 //Default Overrides For Styles In Minima 
 // If you wish to override any of this CSS, do so in _sass/minima/custom-styles.css
 
 .post img {
   display: block;
-  // border:1px solid #021a40;
+  border: 1px solid #021a40;
   vertical-align: top;
   margin-left: auto;
   margin-right: auto;
@@ -24,7 +26,7 @@ color: light-grey;
 .page-content {
   -webkit-font-smoothing: antialiased !important;
   text-rendering: optimizeLegibility !important;
-  font-family: "Segoe UI", SegoeUI, Roboto, "Segoe WP", "Helvetica Neue", "Helvetica", "Tahoma", "Arial", sans-serif !important;
+  font-family: "Beth Ellen", "Borel", "Bonbon", sans-serif !important;
 }
 
 // make non-headings slightly lighter

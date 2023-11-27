@@ -1,5 +1,6 @@
-$base-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Symbol", "Segoe UI Emoji", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif !default;
-$code-font-family: "Menlo", "Inconsolata", "Consolas", "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New", monospace;
+@import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Bonbon&family=Borel&family=Chilanka&display=swap');
+$base-font-family: "Bonbon", -apple-system, BlinkMacSystemFont, "Segoe UI", "Segoe UI Symbol", "Segoe UI Emoji", "Apple Color Emoji", Roboto, Helvetica, Arial, sans-serif !default;
+$code-font-family: "Bonbon", "Menlo", "Inconsolata", "Consolas", "Roboto Mono", "Ubuntu Mono", "Liberation Mono", "Courier New", monospace;
 $base-font-size:   16px !default;
 $base-font-weight: 400 !default;
 $base-font-color: #e0e0e0;
