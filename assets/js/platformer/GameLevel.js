@@ -51,7 +51,7 @@ class GameLevel {
                 const backgroundCanvas = document.createElement("canvas");
                 backgroundCanvas.id = "background";
                 document.querySelector("#canvasContainer").appendChild(backgroundCanvas);
-                const backgroundSpeedRatio = 0;
+                const backgroundSpeedRatio = 1;
                 new Background(backgroundCanvas, loadedImages[i], backgroundSpeedRatio);
                 i++;
             }
