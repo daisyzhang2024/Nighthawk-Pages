@@ -131,7 +131,24 @@ export class Player extends Character{
                 this.movement.down = false;
                 this.x = this.collisionData.touchPoints.other.x;
             }
-        } else {
+        } // Enemy collision
+        if (this.collisionData.touchPoints.other.id === "enemy") {
+            // Collision with the left side of the Enemy
+            if (this.collisionData.touchPoints.other.left) {
+                // Kill Player (Reset Game)
+            }
+            // Collision with the right side of the Enemy
+            if (this.collisionData.touchPoints.other.right) {
+                deathController.setDeath(1);
+                // Kill Player (Reset Game)
+            }
+            // Collision with the top of the Enemy
+            if (this.collisionData.touchPoints.other.ontop) {
+                // Kill Goomba
+                // Make Mario Bounce
+            }
+        }
+        else {
             // Reset movement flags if not colliding with a tube
             this.movement.left = true;
             this.movement.right = true;
