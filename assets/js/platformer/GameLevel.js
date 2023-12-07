@@ -14,8 +14,10 @@ class GameLevel {
         this.backgroundImg = gameObject.background?.file;
         this.platformImg = gameObject.platform?.file;
         this.playerImg = gameObject.player?.file;
-        this.enemyImg = gameObject.enemy?.file;
+        this.enemyImg = gameObject.enemies?.file;
+        this.platformOImg = gameObject.platformO?.file;
         this.playerData = gameObject?.player;
+        this.thingImg = gameObject.thing?.file;
         this.tubeImg = gameObject.tube?.file;
         this.isComplete = gameObject?.callback; // function that determines if level is complete
         this.parallaxSpeed = gameObject?.parallaxSpeed;
@@ -32,6 +34,9 @@ class GameLevel {
         }
         if (this.backgroundImg) {
             imagesToLoad.push(this.loadImage(this.backgroundImg));
+        }
+        if (this.platformOImg) {
+            imagesToLoad.push(this.loadImage(this.platformOImg));
         }
         if (this.platformImg) {
             imagesToLoad.push(this.loadImage(this.platformImg));
