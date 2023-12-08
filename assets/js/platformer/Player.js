@@ -1,6 +1,6 @@
+// tons of stuff with collision logic?
 import GameEnv from './GameEnv.js';
 import Character from './Character.js';
-import Thing1 from './thing.js';
 
 export class Player extends Character{
     // constructors sets up Character object 

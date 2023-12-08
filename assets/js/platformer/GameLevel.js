@@ -1,9 +1,12 @@
+// tons of stuff with loading all the stuff
+
 import GameEnv from './GameEnv.js';
 import Background from './Background.js';
 import Platform from './Platform.js';
 import PlatformO from './PlatformO.js';
 import Player from './Player.js';
 import Tube from './Tube.js';
+import Thing1 from './thing.js';
 
 // Store the assets and attributes of the Game at the specific GameLevel.
 class GameLevel {
@@ -81,6 +84,13 @@ class GameLevel {
                 document.querySelector("#canvasContainer").appendChild(platformCanvas);
                 const platformSpeedRatio = 0;
                 new Platform(platformCanvas, loadedImages[i], platformSpeedRatio);
+                i++;
+            }
+            if (this.platformOImg) {
+                const platformCanvas = document.createElement("canvas");
+                platformCanvas.id = "platform";
+                document.querySelector("#canvasContainer").appendChild(platformCanvas);
+                new PlatformO(platformCanvas, loadedImages[i]);
                 i++;
             }
             // Prepare HTML with Player Canvas (if playerImg is defined)
