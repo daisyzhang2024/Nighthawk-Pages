@@ -74,7 +74,7 @@ image: /images/platformer/backgrounds/hills.png
         alien: { src: "/images/platformer/platforms/alien.png" }
       },
       thing: {
-        coin: { src: "/images/Coin.png" } //Add this one!
+        coin: { src: "/images/Coin.png" }, //Add this one!
       },  
       platformO: {
         grass: { src: "/images/brick_wall.png" },

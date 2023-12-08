@@ -101,6 +101,13 @@ class GameLevel {
                 new Tube(tubeCanvas, loadedImages[i]);
                 i++;
             }
+            if (this.thingImg) {
+                const thingCanvas = document.createElement("canvas");
+                thingCanvas.id = "thing";
+                document.querySelector("#canvasContainer").appendChild(thingCanvas);
+                new Thing1(thingCanvas, loadedImages[i]);
+                i++;
+            }
 
         } catch (error) {
             console.error('Failed to load one or more images:', error);
