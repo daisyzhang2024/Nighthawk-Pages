@@ -1,3 +1,4 @@
+// math stuff??
 import GameEnv from './GameEnv.js';
 
 class GameObject {
