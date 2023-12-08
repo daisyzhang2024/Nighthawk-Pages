@@ -13,14 +13,14 @@ class GameLevel {
         this.backgroundImg2 = gameObject.background2?.file;
         this.backgroundImg = gameObject.background?.file;
         this.platformImg = gameObject.platform?.file;
+        this.platformOImg = gameObject.platformO?.file;
+        this.thingImg = gameObject.thing?.file;
         this.playerImg = gameObject.player?.file;
         this.enemyImg = gameObject.enemies?.file;
-        this.platformOImg = gameObject.platformO?.file;
         this.playerData = gameObject?.player;
-        this.thingImg = gameObject.thing?.file;
         this.tubeImg = gameObject.tube?.file;
-        this.isComplete = gameObject?.callback; // function that determines if level is complete
         this.parallaxSpeed = gameObject?.parallaxSpeed;
+        this.isComplete = gameObject?.callback; // function that determines if level is complete
         GameEnv.levels.push(this);
     }
 
@@ -35,9 +35,6 @@ class GameLevel {
         if (this.backgroundImg) {
             imagesToLoad.push(this.loadImage(this.backgroundImg));
         }
-        if (this.platformOImg) {
-            imagesToLoad.push(this.loadImage(this.platformOImg));
-        }
         if (this.platformImg) {
             imagesToLoad.push(this.loadImage(this.platformImg));
         }
@@ -46,6 +43,12 @@ class GameLevel {
         }
         if (this.tubeImg) {
             imagesToLoad.push(this.loadImage(this.tubeImg));
+        }
+        if (this.thingImg) {
+            imagesToLoad.push(this.loadImage(this.platformOImg));
+        }
+        if (this.platformOImg) {
+            imagesToLoad.push(this.loadImage(this.platformOImg));
         }
 
         try {
@@ -73,6 +76,22 @@ class GameLevel {
 
             // Prepare HTML with Platform Canvas (if platformImg is defined)
             if (this.platformImg) {
+                const platformCanvas = document.createElement("canvas");
+                platformCanvas.id = "platform";
+                document.querySelector("#canvasContainer").appendChild(platformCanvas);
+                const platformSpeedRatio = 0;
+                new Platform(platformCanvas, loadedImages[i], platformSpeedRatio);
+                i++;
+            }
+            if (this.thingImg) {
+                const platformCanvas = document.createElement("canvas");
+                tubeCanvas.id = "thing2";
+                document.querySelector("#canvasContainer").appendChild(platformCanvas);
+                const platformSpeedRatio = 0;
+                new Thing1(platformCanvas, loadedImages[i], platformSpeedRatio);
+                i++;
+            }
+            if (this.platformOImg) {
                 const platformCanvas = document.createElement("canvas");
                 platformCanvas.id = "platform";
                 document.querySelector("#canvasContainer").appendChild(platformCanvas);

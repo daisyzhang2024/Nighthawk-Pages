@@ -13,15 +13,11 @@ image: /images/platformer/backgrounds/hills.png
         z-index: 2; /*Ensure the controls are on top*/
     }
 
-#startGame{
-    animation: fadeout 1.5s, fadein 1.5s 0.5s;
-}
-
-#canvasContainer{
+#toggleCanvasEffect, #background, #platform{
   animation: fadein 5s;
 }
 
-#toggleCanvasEffect{
+#startGame{
   animation: flash 0.5s infinite;
 }
 
