@@ -32,11 +32,14 @@ class GameLevel {
         
         // test for presence of Images
         const imagesToLoad = [];
-        if (this.backgroundImg2) {
+        if (this.backgroundImg2) { // NOTE: DO NOT TOUCH AT ALL PLEASE
             imagesToLoad.push(this.loadImage(this.backgroundImg2));
         }
         if (this.backgroundImg) {
             imagesToLoad.push(this.loadImage(this.backgroundImg));
+        }
+        if (this.platformOImg) {
+            imagesToLoad.push(this.loadImage(this.platformOImg));
         }
         if (this.platformImg) {
             imagesToLoad.push(this.loadImage(this.platformImg));
@@ -48,9 +51,6 @@ class GameLevel {
             imagesToLoad.push(this.loadImage(this.tubeImg));
         }
         if (this.thingImg) {
-            imagesToLoad.push(this.loadImage(this.platformOImg));
-        }
-        if (this.platformOImg) {
             imagesToLoad.push(this.loadImage(this.platformOImg));
         }
 
