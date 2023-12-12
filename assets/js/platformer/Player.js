@@ -169,7 +169,7 @@ export class Player extends Character{
             }
             // Collision with the right side of the Enemy
             if (this.collisionData.touchPoints.other.right) {
-                deathController.setDeath(1);
+                //deathController.setDeath(1);
                 // Kill Player (Reset Game)
             }
             // Collision with the top of the Enemy
@@ -202,6 +202,12 @@ export class Player extends Character{
                 this.isIdle = false;
             }
         }
+        if (key === "a") {
+            GameEnv.backgroundSpeed2 = -0.1;
+        }
+        if (key === "d") {
+            GameEnv.backgroundSpeed2 = 0.1;
+        }
     }
 
     // Event listener key up
@@ -214,6 +220,12 @@ export class Player extends Character{
             this.setAnimation(key);  
             // player idle
             this.isIdle = true;     
+        }
+        if (key === "a") {
+            GameEnv.backgroundSpeed2 = 0;
+        }
+        if (key === "d") {
+            GameEnv.backgroundSpeed2 = 0;
         }
     }
 

@@ -10,7 +10,15 @@ image: /images/platformer/backgrounds/hills.png
 <style>
     #gameBegin, #controls, #gameOver {
         position: relative;
-        z-index: 2; /*Ensure the controls are on top*/
+        z-index: 2; /*Ensure the controls are on top, higher z-index is on top*/
+    }
+    #platform, #tube {
+      position: relative;
+      z-index: 3;
+    }
+    #thing, #character {
+      position: relative;
+      z-index: 4;
     }
 
 #toggleCanvasEffect, #background, #platform{

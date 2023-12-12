@@ -7,6 +7,7 @@ import PlatformO from './PlatformO.js';
 import Player from './Player.js';
 import Tube from './Tube.js';
 import Thing1 from './thing.js';
+import Enemy from './Enemy.js';
 
 // Store the assets and attributes of the Game at the specific GameLevel.
 class GameLevel {
@@ -19,7 +20,8 @@ class GameLevel {
         this.platformOImg = gameObject.platformO?.file;
         this.thingImg = gameObject.thing?.file;
         this.playerImg = gameObject.player?.file;
-        this.enemyImg = gameObject.enemies?.file;
+        this.enemyImg = gameObject.enemy?.file;
+        console.log(gameObject);
         this.playerData = gameObject?.player;
         this.tubeImg = gameObject.tube?.file;
         this.parallaxSpeed = gameObject?.parallaxSpeed;
@@ -46,6 +48,9 @@ class GameLevel {
         }
         if (this.playerImg) {
             imagesToLoad.push(this.loadImage(this.playerImg));
+        }
+        if (this.enemyImg) {
+            imagesToLoad.push(this.loadImage(this.enemyImg));
         }
         if (this.tubeImg) {
             imagesToLoad.push(this.loadImage(this.tubeImg));
@@ -116,6 +121,14 @@ class GameLevel {
                 thingCanvas.id = "thing";
                 document.querySelector("#canvasContainer").appendChild(thingCanvas);
                 new Thing1(thingCanvas, loadedImages[i]);
+                i++;
+            }
+            if (this.enemyImg) {
+                const enemyCanvas = document.createElement("canvas");
+                enemyCanvas.id = "enemy";
+                document.querySelector("#canvasContainer").appendChild(enemyCanvas);
+                const enemySpeedRatio = 0.7;
+                new Enemy(enemyCanvas, loadedImages[i], enemySpeedRatio, this.enemyData);
                 i++;
             }
 
