@@ -20,9 +20,10 @@ class GameLevel {
         this.platformOImg = gameObject.platformO?.file;
         this.thingImg = gameObject.thing?.file;
         this.playerImg = gameObject.player?.file;
-        this.enemyImg = gameObject.enemy?.file;
-        console.log(gameObject);
         this.playerData = gameObject?.player;
+        this.enemyImg = gameObject.enemy?.file;
+        this.enemyData = gameObject?.enemy;
+        console.log(gameObject);
         this.tubeImg = gameObject.tube?.file;
         this.parallaxSpeed = gameObject?.parallaxSpeed;
         this.isComplete = gameObject?.callback; // function that determines if level is complete
@@ -40,11 +41,14 @@ class GameLevel {
         if (this.backgroundImg) {
             imagesToLoad.push(this.loadImage(this.backgroundImg));
         }
+        if (this.platformImg) {
+            imagesToLoad.push(this.loadImage(this.platformImg));
+        }
         if (this.platformOImg) {
             imagesToLoad.push(this.loadImage(this.platformOImg));
         }
-        if (this.platformImg) {
-            imagesToLoad.push(this.loadImage(this.platformImg));
+        if (this.thingImg) {
+            imagesToLoad.push(this.loadImage(this.thingImg));
         }
         if (this.playerImg) {
             imagesToLoad.push(this.loadImage(this.playerImg));
@@ -54,9 +58,6 @@ class GameLevel {
         }
         if (this.tubeImg) {
             imagesToLoad.push(this.loadImage(this.tubeImg));
-        }
-        if (this.thingImg) {
-            imagesToLoad.push(this.loadImage(this.platformOImg));
         }
 
         try {
@@ -98,6 +99,13 @@ class GameLevel {
                 new PlatformO(platformCanvas, loadedImages[i]);
                 i++;
             }
+            if (this.thingImg) {
+                const thingCanvas = document.createElement("canvas");
+                thingCanvas.id = "thing";
+                document.querySelector("#canvasContainer").appendChild(thingCanvas);
+                new Thing1(thingCanvas, loadedImages[i]);
+                i++;
+            }
             // Prepare HTML with Player Canvas (if playerImg is defined)
             if (this.playerImg) {
                 const playerCanvas = document.createElement("canvas");
@@ -108,21 +116,6 @@ class GameLevel {
                 i++;
             }
 
-            // Prepare HTML with Player Canvas (if playerImg is defined)
-            if (this.tubeImg) {
-                const tubeCanvas = document.createElement("canvas");
-                tubeCanvas.id = "tube";
-                document.querySelector("#canvasContainer").appendChild(tubeCanvas);
-                new Tube(tubeCanvas, loadedImages[i]);
-                i++;
-            }
-            if (this.thingImg) {
-                const thingCanvas = document.createElement("canvas");
-                thingCanvas.id = "thing";
-                document.querySelector("#canvasContainer").appendChild(thingCanvas);
-                new Thing1(thingCanvas, loadedImages[i]);
-                i++;
-            }
             if (this.enemyImg) {
                 const enemyCanvas = document.createElement("canvas");
                 enemyCanvas.id = "enemy";
@@ -132,6 +125,15 @@ class GameLevel {
                 i++;
             }
 
+
+            // Prepare HTML with Player Canvas (if playerImg is defined)
+            if (this.tubeImg) {
+                const tubeCanvas = document.createElement("canvas");
+                tubeCanvas.id = "tube";
+                document.querySelector("#canvasContainer").appendChild(tubeCanvas);
+                new Tube(tubeCanvas, loadedImages[i]);
+                i++;
+            }
         } catch (error) {
             console.error('Failed to load one or more images:', error);
         }

@@ -1,10 +1,12 @@
 // tons of stuff with collision logic?
 import GameEnv from './GameEnv.js';
 import Character from './Character.js';
+import deathController from './Death.js';
+import {Enemy, destroy} from './Enemy.js';
 
 export class Player extends Character{
     // constructors sets up Character object 
-    constructor(canvas, image, speedRatio, playerData){
+    constructor(canvas, image, speedRatio, playerData, speedLimit){
         super(canvas, 
             image, 
             speedRatio,
@@ -27,6 +29,10 @@ export class Player extends Character{
         // Add event listeners
         document.addEventListener('keydown', this.keydownListener);
         document.addEventListener('keyup', this.keyupListener);
+        this.speedLimit = speedLimit;
+        this.currentSpeed = 0;
+        this.acceleration = 0.11; // Adjust based on preference
+        this.deceleration = 0.1; // Adjust based on preference 
 
         GameEnv.player = this;
     }
@@ -67,8 +73,9 @@ export class Player extends Character{
     
         // verify key is in active animations
         if (key in this.pressedKeys) {
-            result = (!this.isIdle && this.bottom <= this.y);
+            result = (!this.isIdle && (this.topOfPlatform ||this.bottom <= this.y));
         }
+
 
         // scene for on top of tube animation
         if (!this.movement.down) {
@@ -112,6 +119,54 @@ export class Player extends Character{
             if (this.movement.down) this.y -= (this.bottom * .33);  // jump 33% higher than bottom
         } 
 
+        //Prevents Player from leaving screen
+        if (this.x <= 0) {
+            this.x += 5
+        }
+        // Adjust speed based on pressed keys
+        if (this.pressedKeys['a'] && this.movement.left) {
+            this.currentSpeed -= this.acceleration;
+        } else if (this.pressedKeys['d'] && this.movement.right) {
+            this.currentSpeed += this.acceleration;
+        } else {
+            // Decelerate when no movement keys are pressed
+            this.currentSpeed *= (1 - this.deceleration);
+        }
+
+        // Apply speed limit
+        if (Math.abs(this.currentSpeed) > this.speedLimit) {
+            this.currentSpeed = this.currentSpeed > 0 ? this.speedLimit : -this.speedLimit;
+        }
+        
+
+        // Update player position based on speed
+        this.x += this.currentSpeed;
+
+        // Check for speed threshold to change sprite sheet rows
+        
+        const walkingSpeedThreshold = 1; // Walking speed threshold
+        const runningSpeedThreshold = 5; // Running speed threshold
+
+        if (Math.abs(this.currentSpeed) >= runningSpeedThreshold) {
+                // Change sprite sheet row for running
+                if (this.currentSpeed > 0) {
+                this.setFrameY(this.playerData.runningRight.row);
+                } else {
+                    this.setFrameY(this.playerData.runningLeft.row);
+                }
+                } else if (Math.abs(this.currentSpeed) >= walkingSpeedThreshold) {
+                // Change sprite sheet row for walking
+                    if (this.currentSpeed > 0) {
+                        this.setFrameY(this.playerData.d.row);
+                    } else {
+                        this.setFrameY(this.playerData.a.row);
+                    }
+                    } else {
+                    // Revert to normal animation if speed is below the walking threshold
+                    this.setFrameY(this.playerData.idle.row);
+                    }
+
+
         // Perform super update actions
         super.update();
     }
@@ -122,28 +177,38 @@ export class Player extends Character{
             // Collision with the left side of the Tube
             if (this.collisionData.touchPoints.other.left) {
                 this.movement.right = false;
+                console.log("tube touch left");
             }
             // Collision with the right side of the Tube
             if (this.collisionData.touchPoints.other.right) {
                 this.movement.left = false;
+                console.log("tube touch right");
             }
             // Collision with the top of the player
             if (this.collisionData.touchPoints.other.ontop) {
                 this.movement.down = false;
                 this.x = this.collisionData.touchPoints.other.x;
+                console.log("tube touch top");
             }
-        } // Enemy collision
+        } else {
+            // Reset movement flags if not colliding with a tube
+            this.movement.left = true;
+            this.movement.right = true;
+            this.movement.down = true;
+        };
+        // *******************************
+        // Platform collision
         if (this.collisionData.touchPoints.other.id === "jumpPlatform") {
             // Collision with the left side of the Platform
             console.log("id")
             if (this.collisionData.touchPoints.other.left && (this.topOfPlatform === true)) {
                 this.movement.right = false;
-                console.log("a")
+                console.log("platform left")
             }
             // Collision with the right side of the platform
             if (this.collisionData.touchPoints.other.right && (this.topOfPlatform === true)) {
                 this.movement.left = false;
-                console.log("b")
+                console.log("platform right")
             }
             // Collision with the top of the player
             if (this.collisionData.touchPoints.this.ontop) {
@@ -156,39 +221,37 @@ export class Player extends Character{
             }
             if (this.collisionData.touchPoints.this.top) {
                 this.gravityEnabled = false;
-                this.topOfPlatform = true; 
+                this.topOfPlatform = true;
                 console.log(this.topOfPlatform + "top")
                 console.log(this.gravityEnabled + "grav")
                 //console.log("e");
             }
-        }
+        } else {
+            this.topOfPlatform = false;
+            this.gravityEnabled = true;
+            /* this.movement.left = true;
+            this.movement.right = true;
+            this.movement.down = true; */
+        };
+        // The else statement above may be causing issues
+        // *******************************
+        // Enemy collision
         if (this.collisionData.touchPoints.other.id === "enemy") {
             // Collision with the left side of the Enemy
             if (this.collisionData.touchPoints.other.left) {
-                // Kill Player (Reset Game)
+                deathController.setDeath(1);
             }
             // Collision with the right side of the Enemy
             if (this.collisionData.touchPoints.other.right) {
-                //deathController.setDeath(1);
-                // Kill Player (Reset Game)
+                deathController.setDeath(1);
             }
             // Collision with the top of the Enemy
             if (this.collisionData.touchPoints.other.ontop) {
-                // Kill Goomba
-                // Make Mario Bounce
+                console.log("Bye Goomba");
+                this.y -= (this.bottom * .33);
+                this.collisionData.touchPoints.other.destroy();
             }
-        }
-        else {
-            // Reset movement flags if not colliding with a tube
-            this.movement.left = true;
-            this.movement.right = true;
-            this.movement.down = true;
-            this.topOfPlatform = false;
-            this.movement.left = true;
-            this.movement.right = true;
-            this.movement.down = true;
-            this.gravityEnabled = true;
-        }
+        };
     }
     
     // Event listener key down
@@ -201,6 +264,7 @@ export class Player extends Character{
                 // player active
                 this.isIdle = false;
             }
+            
         }
         if (key === "a") {
             GameEnv.backgroundSpeed2 = -0.1;
