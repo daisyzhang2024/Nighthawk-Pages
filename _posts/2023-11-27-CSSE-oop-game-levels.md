@@ -8,7 +8,7 @@ image: /images/platformer/backgrounds/hills.png
 ---
 
 <style>
-    #gameBegin, #controls, #gameOver {
+    #gameBegin, #controls, #gameOver, #settings {
         position: relative;
         z-index: 2; /*Ensure the controls are on top, higher z-index is on top*/
     }
@@ -20,6 +20,21 @@ image: /images/platformer/backgrounds/hills.png
       position: relative;
       z-index: 4;
     }
+
+.sidenav {
+  position: fixed;
+  height: 100%; /* 100% Full-height */
+  width: 0px; /* 0 width - change this with JavaScript*/
+
+  z-index: 3; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  background-color: black;
+}
 
 #toggleCanvasEffect, #background, #platform{
   animation: fadein 5s;
@@ -55,9 +70,16 @@ image: /images/platformer/backgrounds/hills.png
         <!-- Background controls -->
         <button id="toggleCanvasEffect">Invert</button>
     </div>
+    <div id="settings"> <!-- Controls -->
+      <!-- Background Controls -->
+      <button id="toggleSettingsBar">Settings</button>
+    </div>
     <div id="gameOver" hidden>
         <button id="restartGame">Restart</button>
     </div>
+</div>
+<div id="mySidebar" class="sidenav">
+  <a href="javascript:void(0)" id="toggleSettingsBar1" class="closebtn">&times;</a>
 </div>
 
 <script type="module">
@@ -65,12 +87,28 @@ image: /images/platformer/backgrounds/hills.png
     import GameEnv from '{{site.baseurl}}/assets/js/platformer/GameEnv.js';
     import GameLevel from '{{site.baseurl}}/assets/js/platformer/GameLevel.js';
     import GameControl from '{{site.baseurl}}/assets/js/platformer/GameControl.js';
+    import Controller from '{{site.baseurl}}/assets/js/platformer/Controller.js';
 
 
     /*  ==========================================
      *  ======= Data Definitions =================
      *  ==========================================
     */
+
+    var myController = new Controller();
+    myController.initialize();
+
+    var table = myController.levelTable;
+    document.getElementById("mySidebar").append(table);
+    
+    var toggle = false;
+    
+    function toggleWidth(){
+      toggle = !toggle;
+      document.getElementById("mySidebar").style.width = toggle?"250px":"0px";
+      }
+      document.getElementById("toggleSettingsBar").addEventListener("click",toggleWidth);
+      document.getElementById("toggleSettingsBar1").addEventListener("click",toggleWidth);
 
     // Define assets for the game
     var assets = {
@@ -103,29 +141,32 @@ image: /images/platformer/backgrounds/hills.png
             height: 452,}
         },
       players: {
-        mario: {
-          src: "/images/platformer/sprites/lopezanimation.png", // Modify this to match your file path
-          width: 46,
-          height: 52.5,
-          idle: { row: 6, frames: 1, idleFrame: {column: 1, frames: 0} },
-          a: { row: 1, frames: 4, idleFrame: { column: 1, frames: 0 } }, // Right Movement
-          d: { row: 2, frames: 4, idleFrame: { column: 1, frames: 0 } }, // Left Movement 
-          runningLeft: { row: 5, frames: 4, idleFrame: {column: 1, frames: 0} },
-          runningRight: { row: 4, frames: 4, idleFrame: {column: 1, frames: 0} },
-          s: {}, // Stop the movement 
-        },
-       /* mario: {
+       mario: {
           src: "/images/platformer/sprites/mario.png",
           width: 256,
           height: 256,
+          idle: { row: 6, frames: 1, idleFrame: {column: 1, frames: 0} },
+          runningLeft: { row: 13, frames: 15, idleFrame: {column: 1, frames: 0} },
+          runningRight: { row: 12, frames: 15, idleFrame: {column: 1, frames: 0} },
           w: { row: 10, frames: 15 },
           wa: { row: 11, frames: 15 },
           wd: { row: 10, frames: 15 },
           a: { row: 3, frames: 7, idleFrame: { column: 7, frames: 0 } },
           s: {  },
           d: { row: 2, frames: 7, idleFrame: { column: 7, frames: 0 } }
-        },*/
+        },
         monkey: {
+          src: "/images/platformer/sprites/lopezanimation.png", // Modify this to match your file path
+          width: 46,
+          height: 52.5,
+          idle: { row: 6, frames: 3, idleFrame: {column: 1, frames: 0} },
+          a: { row: 1, frames: 3, idleFrame: { column: 1, frames: 0 } }, // Right Movement
+          d: { row: 2, frames: 3, idleFrame: { column: 1, frames: 0 } }, // Left Movement 
+          runningLeft: { row: 5, frames: 3, idleFrame: {column: 1, frames: 0} },
+          runningRight: { row: 4, frames: 3, idleFrame: {column: 1, frames: 0} },
+          s: {}, // Stop the movement 
+        }
+       /* monkey: {
           src: "/images/platformer/sprites/monkey.png",
           width: 40,
           height: 40,
@@ -135,7 +176,7 @@ image: /images/platformer/backgrounds/hills.png
           a: { row: 1, frames: 15, idleFrame: { column: 7, frames: 0 } },
           s: { row: 12, frames: 15 },
           d: { row: 0, frames: 15, idleFrame: { column: 7, frames: 0 } }
-        }
+        }*/
       }
     };
 
