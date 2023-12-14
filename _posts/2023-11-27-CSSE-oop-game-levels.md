@@ -62,6 +62,9 @@ image: /images/platformer/backgrounds/hills.png
 
 <!-- Prepare DOM elements -->
 <!-- Wrap both the canvas and controls in a container div -->
+<div id="mySidebar" class="sidenav">
+  <a href="javascript:void(0)" id="toggleSettingsBar1" class="closebtn">&times;</a>
+</div>
 <div id="canvasContainer">
     <div id="gameBegin" hidden>
         <button id="startGame">Start Game</button>
@@ -78,9 +81,6 @@ image: /images/platformer/backgrounds/hills.png
         <button id="restartGame">Restart</button>
     </div>
 </div>
-<div id="mySidebar" class="sidenav">
-  <a href="javascript:void(0)" id="toggleSettingsBar1" class="closebtn">&times;</a>
-</div>
 
 <script type="module">
     // Imports
@@ -94,21 +94,6 @@ image: /images/platformer/backgrounds/hills.png
      *  ======= Data Definitions =================
      *  ==========================================
     */
-
-    var myController = new Controller();
-    myController.initialize();
-
-    var table = myController.levelTable;
-    document.getElementById("mySidebar").append(table);
-    
-    var toggle = false;
-    
-    function toggleWidth(){
-      toggle = !toggle;
-      document.getElementById("mySidebar").style.width = toggle?"250px":"0px";
-      }
-      document.getElementById("toggleSettingsBar").addEventListener("click",toggleWidth);
-      document.getElementById("toggleSettingsBar1").addEventListener("click",toggleWidth);
 
     // Define assets for the game
     var assets = {
@@ -179,6 +164,22 @@ image: /images/platformer/backgrounds/hills.png
         }*/
       }
     };
+    
+    var myController = new Controller();
+    myController.initialize();
+
+    var table = myController.levelTable;
+    document.getElementById("mySidebar").append(table);
+    
+    var toggle = false;
+    
+    function toggleWidth(){
+      toggle = !toggle;
+      document.getElementById("mySidebar").style.width = toggle?"250px":"0px";
+      }
+      
+      document.getElementById("toggleSettingsBar").addEventListener("click",toggleWidth);
+      document.getElementById("toggleSettingsBar1").addEventListener("click",toggleWidth);
 
     // add File to assets, ensure valid site.baseurl
     Object.keys(assets).forEach(category => {
