@@ -166,20 +166,6 @@ image: /images/platformer/backgrounds/hills.png
     };
     
     var myController = new Controller();
-    myController.initialize();
-
-    var table = myController.levelTable;
-    document.getElementById("mySidebar").append(table);
-    
-    var toggle = false;
-    
-    function toggleWidth(){
-      toggle = !toggle;
-      document.getElementById("mySidebar").style.width = toggle?"250px":"0px";
-      }
-      
-      document.getElementById("toggleSettingsBar").addEventListener("click",toggleWidth);
-      document.getElementById("toggleSettingsBar1").addEventListener("click",toggleWidth);
 
     // add File to assets, ensure valid site.baseurl
     Object.keys(assets).forEach(category => {
@@ -277,6 +263,23 @@ image: /images/platformer/backgrounds/hills.png
 
     // start game
     GameControl.gameLoop();
+
+    myController.initialize();
+
+    var table = myController.levelTable;
+    document.getElementById("mySidebar").append(table);
+    
+    var toggle = false;
+    
+    function toggleWidth(){
+      toggle = !toggle;
+      document.getElementById("mySidebar").style.width = toggle?"250px":"0px";
+      }
+      
+      document.getElementById("toggleSettingsBar").addEventListener("click",toggleWidth);
+      document.getElementById("toggleSettingsBar1").addEventListener("click",toggleWidth);
+
+    
 
 
 </script>

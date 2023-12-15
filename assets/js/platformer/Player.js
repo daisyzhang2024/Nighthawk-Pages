@@ -116,8 +116,13 @@ export class Player extends Character{
             if (this.movement.right) this.x += this.speed;  // Move to right
         }
         if (this.isGravityAnimation("w")) {
-            if (this.movement.down) this.y -= (this.bottom * .33);  // jump 33% higher than bottom
+            console.log(this.topOfPlatform)
+            if (this.movement.down || this.topOfPlatform) this.y -= (this.bottom * .50);  // jump 22% higher than bottom
+            this.gravityEnabled = true;
         } 
+        
+        // Perform super update actions
+        super.update();
 
         //Prevents Player from leaving screen
         if (this.x <= 0) {
@@ -165,10 +170,6 @@ export class Player extends Character{
                     // Revert to normal animation if speed is below the walking threshold
                     this.setFrameY(this.playerData.idle.row);
                     }
-
-
-        // Perform super update actions
-        super.update();
     }
 
     // Player action on collisions
@@ -264,13 +265,14 @@ export class Player extends Character{
                 // player active
                 this.isIdle = false;
             }
-            
-        }
-        if (key === "a") {
-            GameEnv.backgroundSpeed2 = -0.1;
-        }
-        if (key === "d") {
-            GameEnv.backgroundSpeed2 = 0.1;
+            if ((key === "a") && (this.x > 0)) {
+                GameEnv.backgroundSpeed2 = -0.1;
+                GameEnv.backgroundSpeed = -0.4;
+            }
+            if ((key === "d") && (this.x > 75)) {
+                GameEnv.backgroundSpeed2 = 0.1;
+                GameEnv.backgroundSpeed = 0.4;
+            }
         }
     }
 
@@ -285,10 +287,12 @@ export class Player extends Character{
             // player idle
             this.isIdle = true;     
         }
-        if (key === "a") {
+        if ((key === "a") || (this.x === 0)) {
+            GameEnv.backgroundSpeed = 0;
             GameEnv.backgroundSpeed2 = 0;
         }
         if (key === "d") {
+            GameEnv.backgroundSpeed = 0;
             GameEnv.backgroundSpeed2 = 0;
         }
     }
