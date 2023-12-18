@@ -117,7 +117,7 @@ image: /images/platformer/backgrounds/hills.png
         planet: { src: "/images/platformer/backgrounds/planet.jpg" },
         castles: { src: "/images/platformer/backgrounds/castles.png" },
         end: { src: "/images/platformer/backgrounds/game_over.png" },
-        mountains: { src: "/images/platformer/backgrounds/mountains.jpg"}
+        mountains: { src: "/images/platformer/backgrounds/wallpaper.jpg"}
       },
       enemies: {
           goomba: {

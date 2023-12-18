@@ -6,7 +6,10 @@ export class GameEnv {
     static gameObjects = [];
 
     // game attributes
-    static gameSpeed = 20;
+    static touchCoin = false;
+    static backgroundSpeed = 0;
+    static backgroundSpeed2 = 0;
+    static gameSpeed = 2;
     static gravity = 3;
     static innerWidth;
     static prevInnerWidth;
@@ -16,7 +19,6 @@ export class GameEnv {
     static prevBottom
     static floor;
     static prevFloor;
-    static backgroundSpeed2 = 0;
     // calculated size properties
     static backgroundHeight = 0;
     static platformHeight = 0;
@@ -31,7 +33,7 @@ export class GameEnv {
 
     static update() {
         // Update game state, including all game objects
-        for (const gameObject of GameEnv.gameObjects) {
+        for (const gameObject of this.gameObjects) {
             gameObject.update();
             gameObject.draw();
         }
@@ -115,6 +117,7 @@ export class GameEnv {
         score = 0;
         coinValue = 0;
         if (Player.touchCoin === true) {
+            window.location.reload();
             document.getElementById('score').innerText = 'Score: ${score}';
             score = score++;
         }
