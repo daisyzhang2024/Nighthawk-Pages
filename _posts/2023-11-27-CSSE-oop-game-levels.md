@@ -20,6 +20,20 @@ image: /images/platformer/backgrounds/hills.png
       position: relative;
       z-index: 4;
     }
+    #leaderboardButton{
+      position: fixed;
+      z-index: 5;
+      
+    }
+    #score, #timeScore{
+      position: absolute;
+      z-index: 5;
+      top: 75px; 
+      left: 10px; 
+      color: black; 
+      font-size: 20px; 
+      background-color: white;
+    }
 
 .sidenav {
   position: fixed;
@@ -36,7 +50,7 @@ image: /images/platformer/backgrounds/hills.png
   background-color: black;
 }
 
-#toggleCanvasEffect, #background, #platform, #score, #leaderboardButton{
+#toggleCanvasEffect, #background, #platform{
   animation: fadein 5s;
 }
 
@@ -80,7 +94,7 @@ image: /images/platformer/backgrounds/hills.png
     <div id="gameOver" hidden>
         <button id="restartGame">Restart</button>
     </div>
-    <div id="score" style="position: absolute; top: 75px; left: 10px; color: black; font-size: 20px; background-color: white;">
+    <div id="score">
     Time: <span id="timeScore">0</span>
     </div>
     <button id="leaderboardButton">Leaderboard</button>
@@ -105,23 +119,23 @@ image: /images/platformer/backgrounds/hills.png
         tube: { src: "/images/platformer/obstacles/tube.png" },
       },
       platforms: {
-        grass: { src: "/images/platformer/platforms/grass.png" },
+        grass: { src: "/images/platformer/platforms/cake.jpg" },
         alien: { src: "/images/platformer/platforms/alien.png" }
       },
       thing: {
         coin: { src: "/images/Coin.png" }, //Add this one!
       },  
       platformO: {
-        grass: { src: "/images/brick_wall.png" },
+        grass: { src: "/images/starburst.png" },
       },
       
       backgrounds: {
         start: { src: "/images/platformer/backgrounds/home.png" },
-        hills: { src: "/images/platformer/backgrounds/hills.png" },
+        hills: { src: "/images/platformer/backgrounds/candyland.png" },
         planet: { src: "/images/platformer/backgrounds/planet.jpg" },
         castles: { src: "/images/platformer/backgrounds/castles.png" },
         end: { src: "/images/platformer/backgrounds/game_over.png" },
-        mountains: { src: "/images/platformer/backgrounds/wallpaper.jpg"}
+        mountains: { src: "/images/platformer/backgrounds/cottoncandy.jpg"}
       },
       enemies: {
           goomba: {

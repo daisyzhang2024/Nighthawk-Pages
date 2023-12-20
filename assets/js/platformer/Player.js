@@ -55,7 +55,7 @@ export class Player extends Character{
             this.setFrameX(animation.idleFrame.column)
             this.setMinFrame(animation.idleFrame.frames);
         }
-    }i
+    }
     
     // check for matching animation
     isAnimation(key) {
@@ -105,21 +105,33 @@ export class Player extends Character{
     
         return result;
     }
-    
+    // variables for dash cooldown
+    dashTimer;
+    cooldownTimer;
 
     // Player updates
     update() {
         if (this.isAnimation("a")) {
             if (this.movement.left) this.x -= this.speed;  // Move to left
+            this.facingLeft = true; // Add this!
         }
         if (this.isAnimation("d")) {
             if (this.movement.right) this.x += this.speed;  // Move to right
+            this.facingLeft = false; // Add this!
         }
         if (this.isGravityAnimation("w")) {
             console.log(this.topOfPlatform)
             if (this.movement.down || this.topOfPlatform) this.y -= (this.bottom * .50);  // jump 22% higher than bottom
             this.gravityEnabled = true;
         } 
+        if (this.isAnimation("s")) {
+            if (this.movement) {  // Check if movement is 
+                if(this.dashTimer) {
+                    const moveSpeed = this.speed * 2;
+                    this.x += this.facingLeft ? -moveSpeed : moveSpeed;
+                }
+            }
+        }
         
         // Perform super update actions
         super.update();
@@ -273,9 +285,23 @@ export class Player extends Character{
                 GameEnv.backgroundSpeed2 = 0.1;
                 GameEnv.backgroundSpeed = 0.4;
             }
+            //dash events
+            if (event.key === "s") {
+                this.canvas.style.filter = 'invert(0)'; //revert to default coloring
+                this.dashTimer = setTimeout(() => {
+                    // Stop the player's running functions
+                    clearTimeout(this.dashTimer);
+                    this.dashTimer = null;
+    
+                    // Start cooldown timer
+                    this.cooldownTimer = setTimeout(() => {
+                        clearTimeout(this.cooldownTimer);
+                        this.cooldownTimer = null;
+                    }, 4000);
+                }, 1000);
+            }
         }
     }
-
     // Event listener key up
     handleKeyUp(event) {
         if (this.playerData.hasOwnProperty(event.key)) {
@@ -294,6 +320,10 @@ export class Player extends Character{
         if (key === "d") {
             GameEnv.backgroundSpeed = 0;
             GameEnv.backgroundSpeed2 = 0;
+        }
+        // dash events
+        if (event.key === "s") {
+            this.canvas.style.filter = 'invert(0)'; //revert to default coloring
         }
     }
 
