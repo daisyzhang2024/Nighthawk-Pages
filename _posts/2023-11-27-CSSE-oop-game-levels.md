@@ -119,7 +119,7 @@ image: /images/platformer/backgrounds/hills.png
         tube: { src: "/images/platformer/obstacles/tube.png" },
       },
       platforms: {
-        grass: { src: "/images/platformer/platforms/cake.jpg" },
+        grass: { src: "/images/platformer/platforms/rainbowcake.jpg" },
         alien: { src: "/images/platformer/platforms/alien.png" }
       },
       thing: {
@@ -154,7 +154,8 @@ image: /images/platformer/backgrounds/hills.png
           w: { row: 10, frames: 15 },
           wa: { row: 11, frames: 15 },
           wd: { row: 10, frames: 15 },
-          a: { row: 3, frames: 7, idleFrame: { column: 7, frames: 0 } },
+          a: { row: 3, frames: 7, idleFrame: { column: 7, frames: 0 } }, // ????
+          p: { row: 3, frames: 7, idleFrame: { column: 7, frames: 0 } },
           s: {  },
           d: { row: 2, frames: 7, idleFrame: { column: 7, frames: 0 } }
         },
