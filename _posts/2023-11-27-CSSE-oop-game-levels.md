@@ -72,6 +72,9 @@ image: /images/platformer/backgrounds/hills.png
     from {opacity: 0}
     to {opacity: 1}
 }
+button:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
 </style>
 
 <!-- Prepare DOM elements -->
