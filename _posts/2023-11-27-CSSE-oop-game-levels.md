@@ -304,9 +304,9 @@ image: /images/platformer/backgrounds/hills.png
       // Check if the game over screen has been shown before
       if (!gameOverScreenShown) {
         const playerScore = document.getElementById("timeScore").innerHTML;
-        const playerName = prompt(`You scored ${playerScore}! What is your name?`);
+        const playerName = prompt(`You scored ${playerScore}. What is your name?`);
         let temp = localStorage.getItem("playerScores");
-        temp += playerName + "," + playerScore.toString() + ";";
+        temp += playerName.toString() + ", " + playerScore.toString() + ";";
         localStorage.setItem("playerScores", temp);
         // Set a flag in local storage to indicate that the game over screen has been shown
         localStorage.setItem("gameOverScreenShown", "true");
