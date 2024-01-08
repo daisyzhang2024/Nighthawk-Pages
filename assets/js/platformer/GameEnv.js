@@ -147,7 +147,7 @@ function updateTimer() {
 // Function to start the timer
 function startTimer() {
     // Start the timer interval, updating the timer every second (1000 milliseconds)
-    timerInterval = setInterval(updateTimer, 1000);
+    timerInterval = setInterval(updateTimer, 1);
 }
 
 

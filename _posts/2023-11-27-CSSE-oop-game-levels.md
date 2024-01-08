@@ -72,9 +72,6 @@ image: /images/platformer/backgrounds/hills.png
     from {opacity: 0}
     to {opacity: 1}
 }
-button:hover{
-    background-color: rgba(0, 0, 0, 0.1);
-}
 </style>
 
 <!-- Prepare DOM elements -->
@@ -82,7 +79,7 @@ button:hover{
 <div id="mySidebar" class="sidenav">
   <a href="javascript:void(0)" id="toggleSettingsBar1" class="closebtn">&times;</a>
 </div>
-<div id="canvasContainer">
+<div id="canvasContainer" class="game-canvas">
     <div id="gameBegin" hidden>
         <button id="startGame">Start Game</button>
     </div>
