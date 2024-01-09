@@ -19,7 +19,7 @@ export class PlatformO extends GameObject {
     // Set platform position
     size() {
         // Formula for Height should be on constant ratio, using a proportion of 832
-        const scaledHeight = GameEnv.innerHeight * (60/832);
+        const scaledHeight = GameEnv.innerHeight * (64 / 400);
         // Formula for Width is scaled: scaledWidth/scaledHeight == this.width/this.height
         const scaledWidth = 100;
         const platformX = .1 * GameEnv.innerWidth;
