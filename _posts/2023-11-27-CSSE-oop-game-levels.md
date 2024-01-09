@@ -306,7 +306,7 @@ image: /images/platformer/backgrounds/hills.png
         const playerScore = document.getElementById("timeScore").innerHTML;
         const playerName = prompt(`You scored ${playerScore}. What is your name?`);
         let temp = localStorage.getItem("playerScores");
-        temp += playerName.toString() + ", " + playerScore.toString() + ";";
+        temp += playerName + ", " + playerScore + ";";
         localStorage.setItem("playerScores", temp);
         // Set a flag in local storage to indicate that the game over screen has been shown
         localStorage.setItem("gameOverScreenShown", "true");
