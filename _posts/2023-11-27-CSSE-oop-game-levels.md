@@ -25,15 +25,6 @@ image: /images/platformer/backgrounds/hills.png
       z-index: 5;
       
     }
-    #score, #timeScore{
-      position: absolute;
-      z-index: 5;
-      top: 75px; 
-      left: 10px; 
-      color: black; 
-      font-size: 20px; 
-      background-color: white;
-    }
 
 .sidenav {
   position: fixed;
@@ -94,11 +85,11 @@ image: /images/platformer/backgrounds/hills.png
     <div id="gameOver" hidden>
         <button id="restartGame">Restart</button>
     </div>
-    <div id="score">
-    Time: <span id="timeScore">0</span>
-    </div>
     <button id="leaderboardButton">Leaderboard</button>
 </div>
+<div id="score" style="position: absolute; top: 75px; left: 10px; color: white; font-size: 20px;">
+    Time: <span id="timeScore">0</span>
+    </div>
 
 <script type="module">
     // Imports
@@ -126,7 +117,7 @@ image: /images/platformer/backgrounds/hills.png
         coin: { src: "/images/Coin.png" }, //Add this one!
       },  
       platformO: {
-        grass: { src: "/images/starburst.png" },
+        grass: { src: "/images/platformer/platforms/starburst.png" },
       },
       
       backgrounds: {
