@@ -18,7 +18,7 @@ export class Tube extends GameObject {
     // Set Tube position
     size() {
         // Formula for Height should be on constant ratio, using a proportion of 832
-        const scaledHeight = GameEnv.innerHeight * (100 / 400);
+        const scaledHeight = GameEnv.innerHeight * (100 / 500);
         // Formula for Width is scaled: scaledWidth/scaledHeight == this.width/this.height
         const scaledWidth = scaledHeight * this.aspect_ratio;
         const tubeX = .80 * GameEnv.innerWidth;
