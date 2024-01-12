@@ -9,6 +9,7 @@ import Player from './Player.js';
 import Tube from './Tube.js';
 import Thing1 from './thing.js';
 import Enemy from './Enemy.js';
+import Bunny from './Bunny.js';
 
 // Store the assets and attributes of the Game at the specific GameLevel.
 class GameLevel {
@@ -24,6 +25,8 @@ class GameLevel {
         this.playerData = gameObject?.player;
         this.enemyImg = gameObject.enemy?.file;
         this.enemyData = gameObject?.enemy;
+        this.bunnyImg = gameObject.bunny?.file;
+        this.bunnyData = gameObject?.bunny;
         console.log(gameObject);
         this.tubeImg = gameObject.tube?.file;
         this.parallaxSpeed = gameObject?.parallaxSpeed;
@@ -56,6 +59,9 @@ class GameLevel {
         }
         if (this.enemyImg) {
             imagesToLoad.push(this.loadImage(this.enemyImg));
+        }
+        if (this.bunnyImg) {
+            imagesToLoad.push(this.loadImage(this.bunnyImg));
         }
         if (this.tubeImg) {
             imagesToLoad.push(this.loadImage(this.tubeImg));
@@ -123,6 +129,15 @@ class GameLevel {
                 document.querySelector("#canvasContainer").appendChild(enemyCanvas);
                 const enemySpeedRatio = 0.7;
                 new Enemy(enemyCanvas, loadedImages[i], enemySpeedRatio, this.enemyData);
+                i++;
+            }
+
+            if (this.bunnyImg) {
+                const bunnyCanvas = document.createElement("canvas");
+                bunnyCanvas.id = "bunny";
+                document.querySelector("#canvasContainer").appendChild(bunnyCanvas);
+                const bunnySpeedRatio = 0.9;
+                new Bunny(bunnyCanvas, loadedImages[i], bunnySpeedRatio, this.bunnyData);
                 i++;
             }
 

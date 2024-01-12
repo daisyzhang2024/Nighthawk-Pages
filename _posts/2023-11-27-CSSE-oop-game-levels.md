@@ -22,9 +22,13 @@ image: /images/platformer/backgrounds/hills.png
     }
     #leaderboardButton{
       position: fixed;
-      z-index: 5;
-      
+      z-index: 5; 
     }
+    #cut-story{
+      position: fixed;
+      z-index: 6; 
+    }
+
 
 .sidenav {
   position: fixed;
@@ -63,6 +67,25 @@ image: /images/platformer/backgrounds/hills.png
     from {opacity: 0}
     to {opacity: 1}
 }
+
+#cut-story{
+    visibility: hidden;
+    min-width: 250px;
+    margin: auto;
+    background-color: limegreen;
+    color: white;
+    bottom: 30px;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+}
+/*creating class with javascript*/
+#cut-story.show{
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
 </style>
 
 <!-- Prepare DOM elements -->
@@ -86,10 +109,13 @@ image: /images/platformer/backgrounds/hills.png
         <button id="restartGame">Restart</button>
     </div>
     <button id="leaderboardButton">Leaderboard</button>
+    <button style="position: bottom;" onclick="marioSays()">Mario Says...</button>
 </div>
 <div id="score" style="position: absolute; top: 75px; left: 10px; color: white; font-size: 20px;">
     Time: <span id="timeScore">0</span>
     </div>
+<div id="cut-story"></div>
+
 
 <script type="module">
     // Imports
@@ -134,6 +160,12 @@ image: /images/platformer/backgrounds/hills.png
             width: 448,
             height: 452,}
         },
+      npcs: {
+        bunny: {
+          src: "/images/platformer/sprites/bunny.png",
+          width: 476,
+          height: 524,}
+        },
       players: {
        mario: {
           src: "/images/platformer/sprites/mario.png",
@@ -174,6 +206,23 @@ image: /images/platformer/backgrounds/hills.png
         }*/
       }
     };
+
+    const cutStory = document.getElementById('cut-story');
+    var message_number = 0;
+
+    function marioSays(){
+      var messages = ["hi", "i am mario", "hello"];
+      cutStory.innerHTML = messages[message_number];
+      showMessage();
+      message_number = message_number + 1;
+    }
+
+    function showMessage(){
+        var x = cutStory;
+        x.className = 'show'; // change class name to show
+        //only want to last 3 secs
+        setTimeout(function(){x.className = x.className.replace('show','');}, 3000); //replace show with an empty string
+      }
 
     // Function to switch to the leaderboard screen
     function showLeaderboard() {
@@ -326,7 +375,7 @@ image: /images/platformer/backgrounds/hills.png
     new GameLevel( {tag: "start", callback: startGameCallback } );
     new GameLevel( {tag: "home", background: assets.backgrounds.start, callback: homeScreenCallback } );
     // Game screens
-    new GameLevel( {tag: "hills", background2: assets.backgrounds.mountains, background: assets.backgrounds.hills, platform: assets.platforms.grass, platformO: assets.platformO.grass, thing: assets.thing.coin, player: assets.players.mario, enemy: assets.enemies.goomba,  tube: assets.obstacles.tube, callback: testerCallBack } );
+    new GameLevel( {tag: "hills", background2: assets.backgrounds.mountains, background: assets.backgrounds.hills, platform: assets.platforms.grass, platformO: assets.platformO.grass, thing: assets.thing.coin, player: assets.players.mario, enemy: assets.enemies.goomba,  bunny: assets.npcs.bunny, tube: assets.obstacles.tube, callback: testerCallBack } );
     new GameLevel( {tag: "alien", background: assets.backgrounds.planet, platform: assets.platforms.alien, player: assets.players.monkey, callback: testerCallBack } );
     // Game Over screen
     new GameLevel( {tag: "end", background: assets.backgrounds.end, callback: gameOverCallBack } );
