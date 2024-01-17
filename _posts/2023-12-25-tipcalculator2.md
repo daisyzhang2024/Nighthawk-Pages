@@ -115,7 +115,7 @@ body{
     visibility: hidden;
     min-width: 250px;
     margin: auto;
-    background-color: limegreen;
+    background-color: lightpink;
     color: white;
     bottom: 30px;
     text-align: center;

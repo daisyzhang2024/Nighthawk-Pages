@@ -21,11 +21,11 @@ image: /images/platformer/backgrounds/hills.png
       z-index: 4;
     }
     #leaderboardButton{
-      position: fixed;
+      position: relative;
       z-index: 5; 
     }
     #cut-story{
-      position: fixed;
+      position: relative;
       z-index: 6; 
     }
 
@@ -49,7 +49,7 @@ image: /images/platformer/backgrounds/hills.png
   animation: fadein 5s;
 }
 
-#startGame{
+#startGame, #marioSays{
   animation: flash 0.5s infinite;
 }
 
@@ -109,12 +109,14 @@ image: /images/platformer/backgrounds/hills.png
         <button id="restartGame">Restart</button>
     </div>
     <button id="leaderboardButton">Leaderboard</button>
-    <button style="position: bottom;" onclick="marioSays()">Mario Says...</button>
 </div>
 <div id="score" style="position: absolute; top: 75px; left: 10px; color: white; font-size: 20px;">
     Time: <span id="timeScore">0</span>
     </div>
 <div id="cut-story"></div>
+<div id="marioSays">
+  <button style="position: bottom;" onclick="marioSays()">Mario Says...</button>
+</div>
 
 
 <script type="module">
@@ -209,13 +211,10 @@ image: /images/platformer/backgrounds/hills.png
 
     const cutStory = document.getElementById('cut-story');
     var message_number = 0;
-
-    function marioSays(){
-      var messages = ["hi", "i am mario", "hello"];
-      cutStory.innerHTML = messages[message_number];
-      showMessage();
-      message_number = message_number + 1;
-    }
+    var messages = ["hi", "i am mario", "hello"];
+    cutStory.innerHTML = messages[message_number];
+    console.log(message_number);
+    showMessage();
 
     function showMessage(){
         var x = cutStory;
