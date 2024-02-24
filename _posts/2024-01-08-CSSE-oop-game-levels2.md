@@ -114,7 +114,7 @@ image: /images/platformer/backgrounds/home.png
     * 3.) Modifications can be made to User ID, GameSpeed, Gravity, and Invert(ing) screen color
     * ==========================================
     */
-   cutStory();
+   startCutstory();
 
     // Construct settings sidebar, MVC variable paradigm, and async events to trigger user interaction
     SettingsControl.sidebar();
