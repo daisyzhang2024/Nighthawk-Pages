@@ -45,13 +45,13 @@ image: /images/platformer/backgrounds/hills.png
   background-color: black;
 }
 
-#toggleCanvasEffect, #background, #platform{
+/*#toggleCanvasEffect, #background, #platform{
   animation: fadein 5s;
 }
 
 #startGame, #marioSays{
   animation: flash 0.5s infinite;
-}
+}*/
 
 @keyframes flash {
   50% {
@@ -72,7 +72,8 @@ image: /images/platformer/backgrounds/hills.png
     visibility: hidden;
     min-width: 250px;
     margin: auto;
-    background-color: limegreen;
+    background-color: rgb(255,0,129);
+    border: lightpink;
     color: white;
     bottom: 30px;
     text-align: center;
@@ -83,9 +84,16 @@ image: /images/platformer/backgrounds/hills.png
 /*creating class with javascript*/
 #cut-story.show{
     visibility: visible;
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    -webkit-animation: fadein 5s;
+    animation: fadein 5s;
 }
+
+#cut-story.hide{
+    visibility: visible;
+    -webkit-animation: fadeout 0.5s 5s;
+    animation: fadeout 0.5s 5s;
+}
+
 </style>
 
 <!-- Prepare DOM elements -->
@@ -114,9 +122,9 @@ image: /images/platformer/backgrounds/hills.png
     Time: <span id="timeScore">0</span>
     </div>
 <div id="cut-story"></div>
-<div id="marioSays">
+<!--<div id="marioSays">
   <button style="position: bottom;" onclick="marioSays()">Mario Says...</button>
-</div>
+</div>-->
 
 
 <script type="module">
@@ -209,19 +217,34 @@ image: /images/platformer/backgrounds/hills.png
       }
     };
 
-    const cutStory = document.getElementById('cut-story');
-    var message_number = 0;
-    var messages = ["hi", "i am mario", "hello"];
-    cutStory.innerHTML = messages[message_number];
-    console.log(message_number);
-    showMessage();
+    let cutStory = document.getElementById('cut-story');
+    let messages = ["Hi! My name is Mario, and I accidentally went to the wrong level...", "i am mario", "hello"];
+    console.log("Message length: " + messages.length);
 
     function showMessage(){
         var x = cutStory;
         x.className = 'show'; // change class name to show
+        console.log("class name before: "+x.className);
+        console.log("inner HTML: "+x.innerText);
         //only want to last 3 secs
-        setTimeout(function(){x.className = x.className.replace('show','');}, 3000); //replace show with an empty string
+        setTimeout(function(){x.className = x.className.replace('show',' ');}, 3000); //replace show with an empty string
+         setTimeout(function(){x.className = x.className.replace(' ','hide');}, 3000);
+        console.log("class name after: "+x.className);
+    }
+    
+    let i = 0;
+    let interval = setInterval(() => 
+    {
+      cutStory.innerText = messages[i]; 
+      showMessage();
+      i++;
+      if(i == messages.length)
+      {
+        clearInterval(interval);
       }
+    }, 7000);
+
+
 
     // Function to switch to the leaderboard screen
     function showLeaderboard() {
