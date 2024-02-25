@@ -203,7 +203,7 @@ const GameSetup = {
       },
       players: {
         mario: {
-          src: "/images/platformer/sprites/mario.png",
+          src: "/images/platformer/sprites/garfield.png",
           width: 256,
           height: 256,
           scaleSize: 80,
