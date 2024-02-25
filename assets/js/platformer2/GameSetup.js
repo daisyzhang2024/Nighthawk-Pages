@@ -203,16 +203,16 @@ const GameSetup = {
       },
       players: {
         mario: {
-          src: "/images/platformer/sprites/garfield.png",
+          src: "/images/platformer/sprites/mario.png",
           width: 256,
           height: 256,
           scaleSize: 80,
           speedRatio: 0.7,
-          w: { row: 2, frames: 6 },
-          wa: { row: 11, frames: 6 },
-          wd: { row: 10, frames: 6 },
+          w: { row: 10, frames: 15 },
+          wa: { row: 11, frames: 15 },
+          wd: { row: 10, frames: 15 },
           a: { row: 3, frames: 7, idleFrame: { column: 7, frames: 0 } },
-          s: { row: 12, frames: 6 },
+          s: { row: 12, frames: 15 },
           d: { row: 2, frames: 7, idleFrame: { column: 7, frames: 0 } }
         },
         monkey: {
