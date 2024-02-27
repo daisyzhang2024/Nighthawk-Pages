@@ -1,5 +1,6 @@
 import GameEnv from './GameEnv.js';
 import Background from './Background.js';
+import backgroundMusic from './Audio6.js';
 
 export class BackgroundHills extends Background {
     constructor(canvas, image, data) {
@@ -16,6 +17,7 @@ export class BackgroundHills extends Background {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         super.draw();
+        backgroundMusic();
     }
 
 }
