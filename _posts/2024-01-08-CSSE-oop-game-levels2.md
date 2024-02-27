@@ -3,6 +3,7 @@ layout: base
 title: Platformer Game v2.0 
 description: Incorporate student lessons. Gameplay includes enemies, platforms, parallax backgrounds, settings with local storage, etc.  This revision introduces Settings, Leaderboard and Multiplayer.
 type: collab
+comments: true
 courses: { csse: {week: 18} }
 image: /images/platformer/backgrounds/home.png
 ---
@@ -20,6 +21,10 @@ image: /images/platformer/backgrounds/home.png
 <!--Audio for Mushroom -->
 <audio id="Mushroom" src="{{site.baseurl}}/assets/audio/Mushroom.mp3" preload="auto"></audio>
 
+<!--Audio for Girl/Harold -->
+<audio id="Girl" src="{{site.baseurl}}/assets/audio/girl.mp3" preload="auto"></audio>
+<audio id="Harold" src="{{site.baseurl}}/assets/audio/harold.mp3" preload="auto"></audio>
+
 <!--Audio for Death of Goomba -->
 <audio id="goombaDeath" src="{{site.baseurl}}/assets/audio/goomba-death.mp3" preload="auto"></audio>
 
@@ -31,6 +36,9 @@ image: /images/platformer/backgrounds/home.png
 
 <!--Audio for coin collection -->
 <audio id ="coin" src="{{site.baseurl}}/assets/audio/coin.mp3" preload="auto"></audio>
+
+<!--Audio for background -->
+<audio id ="bkgsound" src="{{site.baseurl}}/assets/audio/bkgsound.mp3" preload="auto"></audio>
 
 
 <!-- Wrap both the controls and gameplay in a container div -->
@@ -87,6 +95,7 @@ image: /images/platformer/backgrounds/home.png
 
     // Setup game data, the objects and levels
     GameSetup.initLevels("{{site.baseurl}}"); 
+    
 
     /* 
      * ==========================================
