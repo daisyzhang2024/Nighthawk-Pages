@@ -2,10 +2,9 @@
 layout: base
 title: Platformer Game v2.0 
 description: Incorporate student lessons. Gameplay includes enemies, platforms, parallax backgrounds, settings with local storage, etc.  This revision introduces Settings, Leaderboard and Multiplayer.
-type: collab
-comments: true
 courses: { csse: {week: 18} }
 image: /images/platformer/backgrounds/home.png
+comments: true
 ---
 
 <!-- Syle is now located, as of Jan 2024 v2.0, in _sass/minima/platformer-styles.scss -->
@@ -144,3 +143,5 @@ image: /images/platformer/backgrounds/home.png
     window.addEventListener('resize', GameEnv.resize);
 
 </script>
+
+<script src="https://utteranc.es/client.js" repo = "daisyzhang2024/Nighthawk-Pages" issue-term="pathname" crossorigin="anonymous" async></script>
