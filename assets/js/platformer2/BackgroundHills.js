@@ -17,7 +17,7 @@ export class BackgroundHills extends Background {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         super.draw();
-        backgroundMusic();
+        //backgroundMusic();
     }
 
 }

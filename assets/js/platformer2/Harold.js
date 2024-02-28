@@ -94,12 +94,12 @@ export class Harold extends Character {
                 this.canvas.style.transformOrigin = "bottom"; 
                 this.canvas.style.transform = "scaleY(0)"; 
                 this.speed = 0;
-                GirlSound();
+                HaroldSound();
 
                 setTimeout((function() {
                     GameEnv.invincible = false;
                     this.destroy();
-                    GameEnv.destroyedGirl = true;
+                    GameEnv.destroyedHarold = true;
                 }).bind(this), 1500);
             }
 

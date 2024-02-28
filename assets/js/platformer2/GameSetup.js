@@ -436,6 +436,8 @@ const GameSetup = {
           // GameObject(s), the order is important to z-index...
           { name: 'memer', id: 'background', class: Background, data: this.assets.backgrounds.memer },
           { name: 'grass', id: 'platform', class: Platform, data: this.assets.platforms.grass },
+          { name: 'girl', id: 'girl', class: Girl, data: this.assets.enemies.girl, xPercentage: 0.09},
+          { name: 'harold', id: 'harold', class: Harold, data: this.assets.enemies.harold, xPercentage: 0.19},
           { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.2, yPercentage: 0.85 },
           { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.2368, yPercentage: 0.85 },
           { name: 'blocks', id: 'jumpPlatform', class: BlockPlatform, data: this.assets.platforms.alien, xPercentage: 0.5, yPercentage: 0.85 },
@@ -448,11 +450,10 @@ const GameSetup = {
           { name: 'goomba', id: 'goomba', class: Goomba, data: this.assets.enemies.goomba, xPercentage: 0.3, minPosition: 0.05},
           { name: 'goomba', id: 'goomba', class: Goomba, data: this.assets.enemies.goomba, xPercentage:  0.5, minPosition: 0.3 },
           { name: 'goombaSpecial', id: 'goomba', class: Goomba, data: this.assets.enemies.goomba, xPercentage:  0.75, minPosition: 0.5 }, //this special name is used for random event 2 to make sure that only one of the Goombas ends the random event
-          { name: 'girl', id: 'girl', class: Girl, data: this.assets.enemies.girl, xPercentage: 0.09},
-          { name: 'harold', id: 'harold', class: Harold, data: this.assets.enemies.harold, xPercentage: 0.19},
           { name: 'flyingGoomba', id: 'flyingGoomba', class: FlyingGoomba, data: this.assets.enemies.flyingGoomba, xPercentage:  0.5, minPosition:  0.05},
           { name: 'flyingGoomba', id: 'flyingGoomba', class: FlyingGoomba, data: this.assets.enemies.flyingGoomba, xPercentage:  0.9, minPosition: 0.5},
-          { name: 'monkey', id: 'player', class: Player, data: this.assets.players.monkey },
+          { name: 'mario', id: 'player', class: Player, data: this.assets.players.mario },
+          { name: 'tube', id: 'tube', class: Tube, data: this.assets.obstacles.tube },
           { name: 'complete', id: 'background', class: BackgroundTransitions,  data: this.assets.backgrounds.complete },
         ];
         // Space Game Level added to the GameEnv ...
